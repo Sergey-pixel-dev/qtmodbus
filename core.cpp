@@ -4,6 +4,7 @@ core::core()
 {
     this->modbus = NULL;
     this->status = DISCONNECTED;
+    this->conn_params = NULL;
 }
 core::~core()
 {
@@ -11,26 +12,30 @@ core::~core()
         delete modbus;
 }
 
-int core::open(connection_struct *con_params)
+int core::open()
 {
-    int feedback = -1;
-    modbus = new qtmodbus(con_params->type);
-    if (con_params->type == 0 || con_params->type == 1) {
-        if (con_params->com_params == NULL || con_params->com_params->device == NULL)
-            return -1;
-        feedback = modbus->COM_Init(con_params->com_params->device,
-                                    con_params->com_params->baud_rate,
-                                    con_params->com_params->polarity,
-                                    con_params->com_params->data_bits,
-                                    con_params->com_params->stop_bits);
+    if (this->conn_params == NULL) {
+        return -1;
     }
-    if (con_params->type == 2) {
-        if (con_params->tcp_params == NULL || con_params->tcp_params->ip == NULL)
+    int feedback = -1;
+    modbus = new qtmodbus(this->conn_params->type);
+    if (this->conn_params->type == 0 || this->conn_params->type == 1) {
+        if (this->conn_params->com_params == NULL || this->conn_params->com_params->device == NULL)
+            return -1;
+        feedback = modbus->COM_Init(this->conn_params->com_params->device,
+                                    this->conn_params->com_params->baud_rate,
+                                    this->conn_params->com_params->polarity,
+                                    this->conn_params->com_params->data_bits,
+                                    this->conn_params->com_params->stop_bits);
+    }
+    if (this->conn_params->type == 2) {
+        if (this->conn_params->tcp_params == NULL || conn_params->tcp_params->ip == NULL)
             return -1;
 
-        feedback = modbus->TCP_Init(con_params->tcp_params->ip, con_params->tcp_params->port);
+        feedback = modbus->TCP_Init(conn_params->tcp_params->ip, conn_params->tcp_params->port);
     }
     if (feedback == 0) {
+        modbus->SetSlave(10);
         this->status = CONNECTED;
         return 0;
     }
@@ -40,5 +45,7 @@ int core::open(connection_struct *con_params)
 
 int core::connect()
 {
-    return 0;
+    if (modbus == NULL)
+        return -1;
+    return modbus->Connect();
 }

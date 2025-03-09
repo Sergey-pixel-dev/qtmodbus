@@ -20,7 +20,7 @@ struct tcp_struct
     const char *ip;
     int port;
 };
-struct connection_struct
+struct conn_struct
 {
     int type;
     com_struct *com_params;
@@ -31,12 +31,13 @@ class core
 {
 private:
     STATUS_ENUM status;
-    qtmodbus *modbus;
 
 public:
-    connection_struct *con_params;
-    int open(connection_struct *con_params);
+    conn_struct *conn_params;
+    int open();
     int connect();
+    qtmodbus *modbus;
+
     core();
     ~core();
 };

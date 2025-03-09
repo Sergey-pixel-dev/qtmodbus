@@ -1,3 +1,4 @@
+#export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 cmake_minimum_required(VERSION 3.19)
 project(qtapp LANGUAGES CXX)
 

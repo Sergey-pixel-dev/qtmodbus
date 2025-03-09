@@ -9,7 +9,6 @@
 #define MAX_ADDR 49999
 
 //НЕТ ПОДДЕРЖКИ ASCII - ИСПРАВИТЬ!
-//Init - то же самое, что и connect!! ИСПРАВИТЬ!!
 
 //enum MODBUS_ADU_TYPE { ASCII, RTU, TCP };
 
@@ -23,6 +22,9 @@ public:
     qtmodbus(int adu_type);
     int COM_Init(const char *device, int baud_rate, char polarity, char dataBits, char stopBits);
     int TCP_Init(const char *ip, int port);
+    int Connect();
+    void Close();
+    int SetSlave(int adr);
 
     int WriteRegisters(int addr, int nb, const void *data);
     int ReadRegisters(int addr, int nb, void *dest);
