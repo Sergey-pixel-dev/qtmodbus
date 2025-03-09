@@ -1,6 +1,6 @@
 #include "qtmodbus.h"
 
-qtmodbus::qtmodbus(MODBUS_ADU_TYPE adu_type)
+qtmodbus::qtmodbus(int adu_type)
 {
     this->adu_type = adu_type;
     this->ctx = NULL;
@@ -9,7 +9,7 @@ qtmodbus::qtmodbus(MODBUS_ADU_TYPE adu_type)
 int qtmodbus::COM_Init(
     const char *device, int baud_rate, char polarity, char data_bits, char stop_bits)
 {
-    if (this->adu_type != RTU || this->adu_type != ASCII)
+    if (this->adu_type != 0 || this->adu_type != 1)
         return 1;
 
     this->ctx = modbus_new_rtu(device, baud_rate, polarity, data_bits, stop_bits);
@@ -20,7 +20,7 @@ int qtmodbus::COM_Init(
 
 int qtmodbus::TCP_Init(const char *ip, int port)
 {
-    if (this->adu_type != TCP)
+    if (this->adu_type != 2)
         return 1;
 
     this->ctx = modbus_new_tcp(ip, port);

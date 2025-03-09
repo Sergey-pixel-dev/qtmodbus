@@ -1,0 +1,44 @@
+#ifndef CORE_H
+#define CORE_H
+#include "qtmodbus.h"
+
+enum STATUS_ENUM {
+    DISCONNECTED,
+    CONNECTED,
+};
+struct com_struct
+{
+    const char *device;
+    int baud_rate;
+    char polarity;
+    char data_bits;
+    char stop_bits;
+};
+
+struct tcp_struct
+{
+    const char *ip;
+    int port;
+};
+struct connection_struct
+{
+    int type;
+    com_struct *com_params;
+    tcp_struct *tcp_params;
+};
+
+class core
+{
+private:
+    STATUS_ENUM status;
+    qtmodbus *modbus;
+
+public:
+    connection_struct *con_params;
+    int open(connection_struct *con_params);
+    int connect();
+    core();
+    ~core();
+};
+
+#endif // CORE_H

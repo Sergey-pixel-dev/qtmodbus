@@ -6,13 +6,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    modbus = NULL;
+    my_core = new core();
 }
 
 MainWindow::~MainWindow()
 {
-    if (modbus != NULL)
-        delete modbus;
     delete ui;
 }
 
@@ -22,3 +20,4 @@ void MainWindow::on_button_send_clicked()
 
 }
 
+void MainWindow::on_pushButton_clicked() {}

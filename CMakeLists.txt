@@ -12,6 +12,7 @@ qt_add_executable(qtapp
     mainwindow.h
     mainwindow.ui
     qtmodbus.h qtmodbus.cpp
+    core.h core.cpp
 )
 
 

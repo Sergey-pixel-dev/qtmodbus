@@ -96,11 +96,22 @@
      </layout>
     </item>
     <item>
-     <widget class="QPushButton" name="button_send">
-      <property name="text">
-       <string>Оправить</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>Подключиться</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_send">
+        <property name="text">
+         <string>Оправить</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

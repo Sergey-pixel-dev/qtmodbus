@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "qtmodbus.h"
+#include "core.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -20,8 +20,10 @@ public:
 private slots:
     void on_button_send_clicked();
 
+    void on_pushButton_clicked();
+
 private:
-    qtmodbus *modbus;
     Ui::MainWindow *ui;
+    core *my_core;
 };
 #endif // MAINWINDOW_H
