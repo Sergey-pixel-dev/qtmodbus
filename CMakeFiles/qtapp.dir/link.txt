@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/qtapp.dir/qtapp_autogen/mocs_compilation.cpp.o CMakeFiles/qtapp.dir/main.cpp.o CMakeFiles/qtapp.dir/mainwindow.cpp.o CMakeFiles/qtapp.dir/qtmodbus.cpp.o -o qtapp  -Wl,-rpath,:::::::::::::::::::::: /usr/lib/libQt6Widgets.so.6.8.2 -llibmodbus /usr/lib/libQt6Gui.so.6.8.2 /usr/lib/libGLX.so /usr/lib/libOpenGL.so /usr/lib/libQt6Core.so.6.8.2 

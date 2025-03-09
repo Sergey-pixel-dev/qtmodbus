@@ -1,0 +1,9 @@
+/home/serg50012/LIM/modbus/qtapp/CMakeFiles/qtapp.dir
+/home/serg50012/LIM/modbus/qtapp/CMakeFiles/edit_cache.dir
+/home/serg50012/LIM/modbus/qtapp/CMakeFiles/rebuild_cache.dir
+/home/serg50012/LIM/modbus/qtapp/CMakeFiles/list_install_components.dir
+/home/serg50012/LIM/modbus/qtapp/CMakeFiles/install.dir
+/home/serg50012/LIM/modbus/qtapp/CMakeFiles/install/local.dir
+/home/serg50012/LIM/modbus/qtapp/CMakeFiles/install/strip.dir
+/home/serg50012/LIM/modbus/qtapp/CMakeFiles/qtapp_autogen_timestamp_deps.dir
+/home/serg50012/LIM/modbus/qtapp/CMakeFiles/qtapp_autogen.dir
