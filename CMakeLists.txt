@@ -42,5 +42,6 @@ target_link_libraries(qtapp
     PRIVATE
         Qt::Core
         Qt::Widgets
+
         modbus
 )

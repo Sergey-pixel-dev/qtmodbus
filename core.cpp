@@ -66,12 +66,13 @@ int core::connect()
     if (modbus == NULL)
         return -1;
 
-    if (modbus->Connect() == 0) {
+    int a = modbus->Connect();
+    if (!a) {
         this->status = CONNECTED;
         return 0;
     }
     this->status = ERR;
-    return -1;
+    return a;
 }
 
 void core::close()
@@ -82,24 +83,23 @@ void core::close()
     modbus->Close();
 }
 
-int core::HasBeenConnected()
+int core::HasBeenConnected() //ПОД ВОПРОСОМ, НУЖНО ЛИ?
 {
     if (!UpdateValues())
         return 0;
-    return -1;
+    return 0;
 }
 
 int core::UpdateValues()
 {
-    int feedback = 0;
     uint16_t buffer[16];
 
     //read Heater current and voltage
-    if (modbus->ReadRegisters(41007, 2, (void *) buffer) != 2) {
+    if (modbus->ReadRegisters(31006, 2, (void *) buffer) != 2) {
         return -1;
     }
     //read different voltage
-    if (modbus->ReadRegisters(41018, 6, (void *) (buffer + 2)) != 6) {
+    if (modbus->ReadRegisters(31018, 6, (void *) (buffer + 2)) != 6) {
         return -1;
     }
     heater->Heater_Current = buffer[0];
@@ -112,4 +112,11 @@ int core::UpdateValues()
     heater->internal_5v = buffer[7];
 
     return 0;
+}
+
+int core::SetValues()
+{
+    uint16_t buffer[16];
+    buffer[0] = heater->Set_Current_Heater;
+    return modbus->WriteRegisters(41005, 1, buffer);
 }

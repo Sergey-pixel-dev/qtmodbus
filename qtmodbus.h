@@ -1,7 +1,7 @@
 #ifndef QTMODBUS_H
 #define QTMODBUS_H
+#include "errno.h"
 #include "modbus/modbus.h"
-
 #define COILS_START 00001
 #define DISCRETE_START 10001
 #define INPUT_REG_START 30001 //переделать потом, так как между секциями есть интервал в 2 адреса
@@ -25,6 +25,7 @@ public:
     int Connect();
     void Close();
     int SetSlave(int adr);
+    const char *GetErrMsg(int err);
 
     int WriteRegisters(int addr, int nb, const void *data);
     int ReadRegisters(int addr, int nb, void *dest);

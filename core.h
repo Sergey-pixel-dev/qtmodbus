@@ -7,6 +7,7 @@ enum STATUS_ENUM {
     CONNECTED,
     ERR,
 };
+
 struct com_struct
 {
     const char *device;
@@ -53,6 +54,7 @@ public:
     void close();
     int HasBeenConnected();
     int UpdateValues();
+    int SetValues();
     qtmodbus *modbus;
 
     core();
