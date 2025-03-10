@@ -20,9 +20,10 @@ public:
 private slots:
     void on_button_send_clicked();
 
-    void on_pushButton_clicked();
+    void on_button_connect_clicked();
 
 private:
+    void UpdateValues();
     Ui::MainWindow *ui;
     core *my_core;
 };

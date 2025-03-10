@@ -64,7 +64,10 @@ int qtmodbus::Connect()
 
 void qtmodbus::Close()
 {
+    if (this->ctx == NULL)
+        return;
     modbus_close(this->ctx);
+    modbus_free(this->ctx);
 }
 
 int qtmodbus::SetSlave(int addr)

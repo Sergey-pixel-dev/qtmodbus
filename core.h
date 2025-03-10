@@ -5,6 +5,7 @@
 enum STATUS_ENUM {
     DISCONNECTED,
     CONNECTED,
+    ERR,
 };
 struct com_struct
 {
@@ -27,15 +28,31 @@ struct conn_struct
     tcp_struct *tcp_params;
 };
 
+struct heater_struct
+{
+    int Set_Current_Heater;
+    int Heater_Current;
+    int Heater_Voltage;
+    int control_27v;
+    int control_12v;
+    int control_minus_5v;
+    int internal_3_3v;
+    int internal_3_3va;
+    int internal_5v;
+};
+
 class core
 {
 private:
-    STATUS_ENUM status;
-
 public:
+    STATUS_ENUM status;
+    heater_struct *heater;
     conn_struct *conn_params;
     int open();
     int connect();
+    void close();
+    int HasBeenConnected();
+    int UpdateValues();
     qtmodbus *modbus;
 
     core();
